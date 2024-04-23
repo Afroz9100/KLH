@@ -1,0 +1,17 @@
+def Attendance(name):
+    today = time.strftime('%d_%m_%Y')
+    # To create a file if it doesn't exists
+    f = open(f'Records/record_{today}.csv', 'a')
+    f.close()
+    with open(f'Records/record_{today}.csv', 'r') as f:
+        data = f.readlines()
+        names = []
+        for line in data:
+            entry = line.split(',')
+            names.append(entry[0])
+
+    with open(f'Records/record_{today}.csv', 'a') as fs:
+        if name not in names:
+            current_time = time.strftime('%H:%M:%S')
+            if name not in exclude_names:
+                fs.write(f"\n{name}, {current_time}")
